@@ -1,0 +1,6 @@
+docs/
+EXE/
+macOS-resforks/
+Win32*/
+.git/
+.git*

@@ -3,7 +3,7 @@
 	<PropertyGroup>
 		<AssemblyName>webone</AssemblyName>
 		<OutputType>Exe</OutputType>
-		<TargetFramework>net6.0</TargetFramework>
+		<TargetFramework>net9.0</TargetFramework>
 		<Authors>Alexander Tauenis</Authors>
 		<Version>0.17.5</Version>
 		<VersionSuffix>-pre</VersionSuffix> <!--<VersionSuffix>-pre</VersionSuffix>-->
