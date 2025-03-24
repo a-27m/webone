@@ -1,10 +1,12 @@
-FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
+FROM --platform=$BUILDPLATFORM mcr.microsoft.com/dotnet/sdk:9.0 AS build
 #USER 1101
+
+ARG TARGETARCH
 
 WORKDIR /src
 COPY . .
 
-RUN dotnet build WebOne.csproj -c Release -o app --os linux #--arch arm64
+RUN dotnet build WebOne.csproj -c Release -o app --os linux --arch $TARGETARCH
 
 FROM mcr.microsoft.com/dotnet/runtime:9.0 AS runtime
 
