@@ -27,7 +27,11 @@ jobs:
         # append: # optional              
 
     - name: Build the Docker image
-      run: docker buildx build --pull --platform "linux/arm64,linux/arm,linux/amd64" -t number27/webone:latest .
+      run: |
+        docker login -u number27 -p ${{ secrets.DOCKERHUB_PAT }}
+        docker buildx build --pull --push --platform "linux/arm64,linux/arm,linux/amd64" -t number27/webone:latest .
       # run: docker build . --file Dockerfile --tag number27/webone:$(date +%s) --tag number27/webone:dev --tag number27/webone:latest
     - name: Publish to the Docker Hub
-      run: docker push number27/webone:latest
+      run: |
+        # docker login -u number27 -p ${{ secrets.DOCKERHUB_PAT }}
+        docker push number27/webone:latest
