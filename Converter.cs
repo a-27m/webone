@@ -220,6 +220,7 @@ namespace WebOne
 			// Preparing variable for application instance name
 			string name = "";
 
+#pragma warning disable CA1416 // PerformanceCounter is Windows-only; usage is platform-specific (guarded at runtime)
 			foreach (string instance in new PerformanceCounterCategory("Process").GetInstanceNames())
 			{
 				if (process.HasExited) return double.MinValue;
@@ -261,6 +262,7 @@ namespace WebOne
 			{
 				//System.InvalidOperationException: "Instance 'convert#1' does not exist in the specified Category."
 				return 0;
+#pragma warning restore CA1416
 			}
 		}
 

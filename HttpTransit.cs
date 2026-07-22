@@ -2414,7 +2414,9 @@ namespace WebOne
 				{ HelpString += "Pending requests: <b>" + (Load - 1) + "</b>.<br>"; }
 				else
 				{ HelpString += "Open connections: <b>" + (Load) + "</b>.<br>"; }
+#pragma warning disable SYSLIB0014 // ServicePointManager is vestigial; display only, not used for outbound TLS
 				HelpString += "Available security: <b>" + ServicePointManager.SecurityProtocol + "</b> (" + (int)ServicePointManager.SecurityProtocol + ").<br>";
+#pragma warning restore SYSLIB0014
 
 				HelpString += "<h2>Aliases:</h2><ul>";
 				bool EvidentAlias = false;

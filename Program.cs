@@ -177,14 +177,16 @@ namespace WebOne
 						Console.WriteLine();
 						Log.WriteLine(true, false, "CA Certificate will be new, so import it to browser(s) after build succeeds.");
 						CreateRootCertificate();
-						RootCertificate = new X509Certificate2(X509Certificate2.CreateFromPemFile(ConfigFile.SslCertificate, ConfigFile.SslPrivateKey).Export(X509ContentType.Pkcs12));
+						byte[] pkcs12Bytes = X509Certificate2.CreateFromPemFile(ConfigFile.SslCertificate, ConfigFile.SslPrivateKey).Export(X509ContentType.Pkcs12);
+						RootCertificate = X509CertificateLoader.LoadPkcs12(pkcs12Bytes, null);
 						Log.WriteLine(true, false, "The new certificate is called \"" + RootCertificate.GetNameInfo(X509NameType.SimpleName, false) + "\".");
 						Log.WriteLine(true, false, "WebOne will now exit.");
 						Environment.Exit(0);
 					}
 					try
 					{
-						RootCertificate = new X509Certificate2(X509Certificate2.CreateFromPemFile(ConfigFile.SslCertificate, ConfigFile.SslPrivateKey).Export(X509ContentType.Pkcs12));
+						byte[] pkcs12Bytes = X509Certificate2.CreateFromPemFile(ConfigFile.SslCertificate, ConfigFile.SslPrivateKey).Export(X509ContentType.Pkcs12);
+						RootCertificate = X509CertificateLoader.LoadPkcs12(pkcs12Bytes, null);
 						Protocols += ", HTTPS 1.1";
 						if (!DefaultPACoverriden) DefaultPAC += DefaultPAChttps;
 
@@ -868,6 +870,7 @@ namespace WebOne
 			// Preparing variable for application instance name
 			string name = "";
 
+#pragma warning disable CA1416 // PerformanceCounter is Windows-only; usage is platform-specific (guarded at runtime)
 			foreach (string instance in new PerformanceCounterCategory("Process").GetInstanceNames())
 			{
 				if (process.HasExited) return double.MinValue;
@@ -894,6 +897,7 @@ namespace WebOne
 
 			if (process.HasExited) return double.MinValue;
 			return Math.Round(cpu.NextValue() / Environment.ProcessorCount, 2);
+#pragma warning restore CA1416
 		}
 
 		/// <summary>

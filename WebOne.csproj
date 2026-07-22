@@ -3,7 +3,7 @@
 	<PropertyGroup>
 		<AssemblyName>webone</AssemblyName>
 		<OutputType>Exe</OutputType>
-		<TargetFramework>net9.0</TargetFramework>
+		<TargetFramework>net10.0</TargetFramework>
 		<Authors>Alexander Tauenis</Authors>
 		<Version>0.18.3</Version>
 		<VersionSuffix>-pre</VersionSuffix> <!--<VersionSuffix>-pre</VersionSuffix>-->
@@ -13,7 +13,7 @@
 		<Product>WebOne HTTP Proxy Server</Product>
 		<Description>HTTP 1.x proxy that makes old web browsers usable again in the Web 2.0 world.</Description>
 		<RepositoryType>GitHub</RepositoryType>
-		<RepositoryUrl>https://github.com/atauenis/webone/</RepositoryUrl>
+		<RepositoryUrl>https://github.com/a-27m/webone/</RepositoryUrl>
 		<StartupObject>WebOne.Program</StartupObject>
 		<PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
 		<Configurations>Debug;Release;ReleaseSC</Configurations>
@@ -191,8 +191,7 @@ fi
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="System.Diagnostics.PerformanceCounter" Version="4.7.0" />
-		<PackageReference Include="System.Text.Encoding.CodePages" Version="4.7.0" />
+		<PackageReference Include="System.Diagnostics.PerformanceCounter" Version="10.0.10" />
 	</ItemGroup>
 
 	<ItemGroup>

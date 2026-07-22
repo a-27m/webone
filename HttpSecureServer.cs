@@ -127,10 +127,13 @@ namespace WebOne
 				sslc.TargetServer = RequestReal.RawUrl;
 				sslc.Encrypting = string.Format("{0} with {1} {2}-bit, {3} {4}-bit",
 				ClientStreamTunnel.SslProtocol,
+#pragma warning disable SYSLIB0058 // Legacy SSL/cipher info needed for diagnostic; NegotiatedCipherSuite can't represent SSL2/SSL3/RC4/3DES
 				ClientStreamTunnel.CipherAlgorithm.ToString(),
 				ClientStreamTunnel.CipherStrength,
 				ClientStreamTunnel.HashAlgorithm.ToString(),
-				ClientStreamTunnel.HashStrength);
+				ClientStreamTunnel.HashStrength
+#pragma warning restore SYSLIB0058
+				);
 				new HttpRequestProcessor().ProcessClientRequest(sslc, Logger, RequestReal.RawUrl.Split(':')[0]);
 			}
 			catch (IOException)

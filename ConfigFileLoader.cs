@@ -213,9 +213,13 @@ namespace WebOne
 									SecurityProtocolType spt = SecurityProtocolType.SystemDefault;
 									if (!Enum.TryParse(Option.Value, out spt))
 									{
+#pragma warning disable SYSLIB0014 // ServicePointManager is vestigial; config directive no-op since HttpClient migration
 										Log.WriteLine(true, false, "Warning: Bad TLS version {1} ({0}), using {2} ({2:D}).", Option.Value, spt, ServicePointManager.SecurityProtocol);
+#pragma warning restore SYSLIB0014
 									}
+#pragma warning disable SYSLIB0014 // ServicePointManager is vestigial; config directive no-op since HttpClient migration
 									ServicePointManager.SecurityProtocol = spt;
+#pragma warning restore SYSLIB0014
 									break;
 								case "UserAgent":
 									ConfigFile.UserAgent = Option.Value;
@@ -497,7 +501,9 @@ namespace WebOne
 
 									try
 									{
+#pragma warning disable CA1416 // CipherSuitesPolicy already has try/catch; guard warns prematurely
 										ConfigFile.SslCipherSuitesPolicy = new CipherSuitesPolicy(ConfigFile.SslCipherSuites);
+#pragma warning restore CA1416
 									}
 									catch (PlatformNotSupportedException)
 									{
